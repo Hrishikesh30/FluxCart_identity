@@ -1,24 +1,26 @@
-#FluxKart Identity Reconciliation API
+# FluxKart Identity Reconciliation API
 This project solves the identity reconciliation problem — identifying and linking customer contacts based on provided email and/or phone number.
 
-🔗 Hosted API
+## 🔗 Hosted API
 POST /identify
 
-Endpoint: https://fluxcart-identity.onrender.com/identify
-
-Usage
+- Endpoint: https://fluxcart-identity.onrender.com/identify
+- Test : https://fluxcart-identity.onrender.com/docs
+## Usage
 
 Request
 Method: POST
 Content-Type: application/json
 
-Body:
+**Body:**
+```json
 {
-"email": "john@example.com",
-"phoneNumber": "9876543210"
+  "email": "john@example.com",
+  "phoneNumber": "1234567890"
 }
-
-Response:
+```
+**Response:**
+```json
 {
 "contact": {
 "primaryContactId": 1,
@@ -27,25 +29,24 @@ Response:
 "secondaryContactIds": [2, 3]
 }
 }
+```
+## Tech Stack:
+- FastAPI – Web framework(Python)
+- SQLite – Lightweight database (used for easy deployment)
+- SQLAlchemy – ORM
+- Pydantic – Data validation
+- Render.com – Free app hosting
 
-Tech Stack:
-FastAPI – Web framework(Python)
-SQLite – Lightweight database (used for easy deployment)
-SQLAlchemy – ORM
-Pydantic – Data validation
-Render.com – Free app hosting
+## Run Locally
+#### Install dependencies
 
-Run Locally
-cmd
+``pip install -r requirements.txt``
 
-# Install dependencies
+#### Run the app
 
-pip install -r requirements.txt
+``uvicorn main:app --reload``
+Then open ``http://localhost:8000/``
 
-# Run the app
-
-uvicorn main:app --reload
-Then open http://localhost:8000/docs to test the API in Swagger UI.
-
+##
 Built for the Bitespeed backend task.
 Handles merging of multiple customer records using link precedence logic.
