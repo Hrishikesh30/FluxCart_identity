@@ -2,10 +2,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 #mysql creds 
-#SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:password@localhost:3306/bitespeed"
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:hrishi2002@localhost:3306/bitespeed"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./bitespeed.db"
+
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={}
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
